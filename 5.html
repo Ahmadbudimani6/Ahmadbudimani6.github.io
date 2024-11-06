@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame Foto Aesthetic dengan Quotes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+        }
+        .photo-frame {
+            width: 100%;
+            height: 300px;
+            background-color: #f2f2f2;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .photo-frame img:hover {
+            transform: scale(1.1);
+        }
+        .quote {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-style: italic;
+            color: #555;
+            padding: 10px;
+            border-top: 2px solid #ddd;
+            margin-top: 15px;
+        }
+        .audio-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .audio-controls button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .audio-controls button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .back-button:hover {
+            background-color: #218838;
+        }
+        audio {
+            display: none; /* Menyembunyikan kontrol audio */
+        }
+
+        /* Responsiveness for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+            .photo-frame {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="photo-frame">
+            <img src="5.jpg" alt="Foto Aesthetic dengan Pemandangan Alam" />
+        </div>
+        <div class="quote">
+            "Cinta habis di orang lama itu beneran ada. Bukannya belum move on ataupun belum ikhlas, tapi  kaya udah kehabisan energy aja buat ngulang semua dari awal lagi, ngga semudah itu buat jatuh cinta lagi sekalipun orang baru itu jauh lebih menarik.
+        </div>
+
+        <!-- Tombol Kembali -->
+        <a href="index.html">
+            <button class="back-button">Kembali</button>
+        </a>
+
+        <!-- Kontrol Audio -->
+        <div class="audio-controls">
+            <button id="playPauseBtn" onclick="toggleAudio()">Putar Lagu</button>
+        </div>
+    </div>
+
+    <!-- Audio otomatis (dalam keadaan muted) -->
+    <audio id="backgroundAudio" loop muted>
+        <source src="sc.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        let audio = document.getElementById('backgroundAudio');
+        let playPauseBtn = document.getElementById('playPauseBtn');
+        let isPlaying = false;
+
+        // Fungsi untuk memutar atau menghentikan audio
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                playPauseBtn.textContent = 'Putar Lagu';
+            } else {
+                audio.play();
+                playPauseBtn.textContent = 'Hentikan Lagu';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Memulai audio secara otomatis saat halaman dimuat dalam keadaan muted
+        window.onload = function() {
+            audio.play();
+            playPauseBtn.textContent = 'Hentikan Lagu';
+            isPlaying = true;
+
+            // Menonaktifkan mute setelah audio mulai diputar
+            audio.muted = false;
+        }
+    </script>
+
+</body>
+</html>

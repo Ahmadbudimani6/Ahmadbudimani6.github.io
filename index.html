@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Biodata</title>
+    <style>
+        /* Style untuk body dan halaman secara umum */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: 100vh;  
+            overflow: auto;  
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        /* Animasi untuk efek transisi fade-in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Style untuk card profil */
+        .profile-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            padding: 20px;
+            text-align: center;
+            transform: translateY(-50px);
+            animation: slideUp 1s forwards;
+            overflow: hidden;
+            background: linear-gradient(145deg, #ffffff, #f4f8fb);
+            position: relative;
+        }
+
+        /* Animasi slide-up saat halaman dibuka */
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Gaya untuk gambar profil */
+        .profile-card .profile-image-container {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #fff;  /* Tambahkan border putih di sekitar gambar */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .profile-card .profile-image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .profile-card .profile-image-container:hover img {
+            transform: scale(1.1);  /* Zoom efek pada gambar saat hover */
+        }
+
+        .profile-card .profile-image-container:hover::before {
+            opacity: 0;
+        }
+
+        /* Gaya untuk nama dan informasi lainnya */
+        .profile-card h1 {
+            font-size: 26px;
+            color: #333;
+            margin: 10px 0;
+            animation: fadeInText 1s ease-out;
+        }
+
+        /* Animasi untuk teks (nama) */
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-card p {
+            font-size: 16px;
+            color: #666;
+            margin: 5px 0;
+            animation: fadeInText 1.5s ease-out;
+        }
+
+        .profile-card .contact-info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Style untuk tombol sosial media */
+        .profile-card button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-card button:hover {
+            background-color: #45a049;
+        }
+
+        /* Tombol LinkedIn */
+        .profile-card .btn-linkedin {
+            background-color: #0077b5;
+        }
+
+        .profile-card .btn-linkedin:hover {
+            background-color: #005582;
+        }
+
+        /* Tombol GitHub */
+        .profile-card .btn-github {
+            background-color: #333;
+        }
+
+        .profile-card .btn-github:hover {
+            background-color: #555;
+        }
+
+        /* Tombol Instagram */
+        .profile-card .btn-instagram {
+            background-color: #E1306C;
+        }
+
+        .profile-card .btn-instagram:hover {
+            background-color: #C13584;
+        }
+
+        /* Gaya untuk foto postingan */
+        .post-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInImages 2s forwards 0.5s;
+        }
+
+        @keyframes fadeInImages {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .post-images img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .post-images img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsif untuk perangkat lebih kecil */
+        @media (max-width: 768px) {
+            .profile-card {
+                width: 90%;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-card {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <!-- Container untuk gambar profil dengan overlay -->
+        <div class="profile-image-container">
+            <img src="8.jpg" alt="Foto Profil Ahmad Budiman">
+        </div>
+        <h1>Ahmad Budiman</h1>
+        <p>Bandung, 25-08-07</p>
+        <p>Laki-Laki</p>
+        <p>dia tetap pemenangnya</p>
+        
+        <!-- Tombol untuk sosial media -->
+        <button class="btn-instagram" onclick="window.open('https://www.instagram.com/bdmnnn___/', '_blank');">
+            <i class="fab fa-instagram"></i> Instagram
+        </button>
+        
+        <!-- Foto Postingan -->
+        <div class="post-images">
+            <div class="post-item">
+                <a href="1.html">
+                <img src="1.jpg" alt="Foto Postingan 1">
+                </a>
+            </div>
+            <div class="post-item">
+               <a href="2.html">
+                <img src="2.jpg" alt="Foto Postingan 2">
+                </a>
+            </div>
+            <div class="post-item">
+                <a href="3.html">
+                <img src="3.jpg" alt="Foto Postingan 3">
+                </a>
+            </div>
+            <div class="post-item">
+               <a href="4.html">
+                <img src="4.jpg" alt="Foto Postingan 4">
+                </a>
+            </div>
+            <div class="post-item">
+                <a href="5.html">
+                <img src="5.jpg" alt="Foto Postingan 5">
+                </a>
+            </div>
+            <div class="post-item">
+              <a href="6.html">
+                <img src="6.jpg" alt="Foto Postingan 6">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menambahkan Font Awesome untuk ikon sosial media (jika belum ada) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+</html>
